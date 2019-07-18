@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.axstudios.myshoppinglist" version="1.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>MyShoppingList</name>
+    <author email="mailmyshoppinglist@gmail.com" href="https://myshoppinglist.cat">
+        AX Studios
+    </author>
+    <preference name="phonegap-version" value="cli-7.1.0" />
+    <icon src="icon.png"/>
+    <preference name="Orientation" value="portrait" />
+    <preference name="StatusBarBackgroundColor" value="#3E69C3" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <content src="index.html"/>
+  	<preference name="android-minSdkVersion" value="21" />
+  	<plugin name="cordova-android-support-gradle-release" value="--variable ANDROID_SUPPORT_VERSION=21"  />
+    <plugin name="phonegap-plugin-barcodescanner" />
+    <plugin name="cordova-plugin-statusbar"/>
+	<plugin name="cordova-plugin-whitelist" source="npm"/>
+    <plugin name="cordova-plugin-appversion"/>
+    <plugin name="cordova-plugin-dialogs"/>
+    <plugin name="cordova-plugin-inappbrowser"/>
+    <plugin name="cordova-plugin-vibration"/>
+    <plugin name="cordova-plugin-crypt-file"/>
+    <plugin name="cordova-plugin-spinner"/>
+    <plugin name="cordova-pdf-generator"/>
+    <plugin name="cordova-plugin-overview"/>
+    <preference name="OverviewColor" value="#3E69C3" />
+    <access origin="*"/>
+    <allow-intent href="*https://myshoppinglist.cat/*" />
+    <allow-navigation href="*https://myshoppinglist.cat/*" />
+    <access origin="mailto:*" launch-external="yes" />
+</widget>

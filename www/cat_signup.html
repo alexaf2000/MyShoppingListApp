@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" type="text/css" href="./fonts/ionicons/css/ionicons.min.css">
+      <link rel="stylesheet" type="text/css" href="./css/appstyle.css">
+   </head>
+   <body class="loginbody animated fadeIn">
+      <div class="backgroundlogin"></div>
+      <a class="buttonback" style="position: fixed;" href="./cat_start.html" rel="external" ><i class="ion-ios-arrow-back" aria-hidden="true"></i></a>
+      <img class="logologin register animated zoomIn" src="./img/logo.png">
+      <div class="bottomlogin register">
+         <div class="login__form">
+            <div class="login__row animated slideInUp">
+               <i class="ion-ios-person loginicons"></i>
+               <input type="text" id="name" class="login__input name" placeholder="Nom" maxlength="35"/>
+            </div>
+            <div class="login__row animated slideInUp">
+               <i style="margin-right: 24px"></i>
+               <input type="text" id="surname" class="login__input pass" placeholder="Cognom" maxlength="35"/>
+            </div>
+            <div class="login__row animated slideInUp">
+               <i class="ion-android-pin loginicons"></i>
+               <input type="number" id="cp" class="login__input pass" placeholder="Codi postal"/>
+            </div>
+            <div class="login__row animated slideInUp">
+               <i class="ion-android-mail loginicons"></i>
+               <input type="email" id="email" class="login__input pass" placeholder="Correo electrònico" maxlength="50"/>
+            </div>
+            <div class="login__row animated slideInUp">
+               <i style="margin-right: 24px"></i>
+               <input type="email" id="confemail" class="login__input pass" placeholder="Confirmar correu" maxlength="50"/>
+            </div>
+            <div class="login__row animated slideInUp">
+               <i class="ion-key loginicons"></i>
+               <input type="password" id="password" class="login__input pass" placeholder="Contrasenya" maxlength="35"/>
+            </div>
+            <div class="login__row animated slideInUp">
+               <i style="margin-right: 14px"></i>
+               <input type="password" id="confpass" class="login__input pass" placeholder="Confirmar contrasenya" maxlength="35"/>
+            </div>
+            <button id="signup" type="submit" class="log" style="margin-bottom: 10px;">Crear compte</button>
+            <a style="position: absolute;top: 0px;display: block;text-align: center;left: 0;right: 0;margin: auto;font-size: 10px;" onclick="window.open('https://myshoppinglist.cat/termsandprivacy/', '_system');">Accepto els Termes i condicions i política de privacitat.</a>
+         </div>
+      </div>
+   </body>
+   <script type="text/javascript" src="cordova.js"></script>
+   <script type="text/javascript" src="js/jquery.js"></script>
+   <script type="text/javascript" src="js/md5.min.js"></script>
+   <script type="text/javascript">
+      $("#signup").click(function(){
+      var name=$("#name").val();
+      var surname=$("#surname").val();
+      var cp=$("#cp").val();
+      var email=$("#email").val();
+      var confemail=$("#confemail").val();
+      var decrypted=$("#password").val();
+      event.preventDefault()
+      var password = md5(decrypted)
+      var confpass=$("#confpass").val();
+      var dataString="name="+name+"&surname="+surname+"&cp="+cp+"&email="+email+"&password="+password+"&signup=";
+      if (!($.trim(name).length>0 & $.trim(surname).length>0 & $.trim(cp).length>0 & $.trim(email).length>0 & $.trim(password).length>0)) {
+        alert ('No pot quedar cap camp buit.');
+      } else {
+        if (!isValidEmail(email)) {
+             window.alert("El correu electrònic introduït no és vàlid.");
+        } else {
+          if (email !== confemail) {
+              window.alert("Els teus correus electrònics no coincideixen.");
+          } else {
+              if(decrypted == confpass) {
+              $.ajax({
+                type: "POST",
+                url: 'https://myshoppinglist.cat/app/cat_register.php',
+                data: dataString,
+                crossDomain: true,
+                cache: false,
+                beforeSend: function(){ $("#signup").val('Connecting...');},
+                success: function(data){
+                  if(data=="success") {
+                    alert("T'has registrat amb èxit!");
+                    window.location.href = "cat_start.html";
+                  } else if(data="exist") {
+                    alert("Ups! Sembla que ja t'has registrat a l'app, prova a iniciar sessió.");
+                  } else if(data="failed")  {
+                    alert("Alguna cosa ha sortit malament!");
+                  }
+                }
+              });
+            } else { 
+              alert ('Les teves contrasenyes no coincideixen');
+            }
+          }
+        }
+      }return false;
+      });
+      
+      function isValidEmail(mail) { 
+        return /^\w+([\.\+\-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail); 
+      }
+   </script>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" type="text/css" href="./fonts/ionicons/css/ionicons.min.css">
+      <link rel="stylesheet" type="text/css" href="./css/appstyle.css">
+   </head>
+   <body onload="onLoad()">
+      <div class="backgroundwall account"></div>
+      <div class="headerboxsign animatedhead fadeIn">
+         <p class="titleuphead">Mi perfil</p>
+         <a id="logout" class="buttonrightup" href="#" rel="external"><i class="ion-log-out" aria-hidden="true"></i></a>
+      </div>
+      <div class="bodyapp animatedfadeIn">
+         <div class="user animated fadeIn">
+            <img src="./img/house-icon.png">
+         </div>
+         <div class="mymarkets animated fadeIn">
+            <h1>Tus supermercados cercanos...</h1>
+         </div>
+         <div class="helptoadd animated fadeIn">
+         </div>
+      </div>
+      <div id="navigation-wrapper">
+         <div class="navigation">
+            <div class="navigation-buttons">
+               <ul>
+                  <li style="width: 36.8%!important;padding-right: 0px!important;padding-left: 7%!important;">
+                     <a href="list.html">
+                        <i class="material-icons">book</i>
+                        <p>Lista</p>
+                     </a>
+                  </li>
+                  <li style="display: none;">
+                     <a href="./manager.html">
+                        <i class="material-icons">equalizer</i>
+                        <p>Gestor</p>
+                     </a>
+                  </li>
+                  <li style="display: none;">
+                     <a href="./sales.html">
+                        <i class="material-icons">local_offer</i>
+                        <p>Ofertas</p>
+                     </a>
+                  </li>
+                  <li class="selected" style="width: 36.8%!important;padding-right: 0px!important;padding-left: 7%!important;">
+                     <a href="#" id=backToTop>
+                        <i class="material-icons">account_circle</i>
+                        <p>Perfil</p>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+      <script type="text/javascript" src="js/jquery.js"></script>
+      <script type="text/javascript" src="js/index_web.js"></script>
+      <script type="text/javascript" src="cordova.js"></script>
+      <script type="text/javascript">
+         $("#logout").click(function(){
+         localStorage.login="false";
+         window.location.href = "start.html";
+         });
+      </script>
+      <script type="text/javascript">
+          $(document).ready(function() {
+            if (localStorage.alertlistad=="1") {
+              $("body").append("<div class='alert animated slideInLeft adding' style='width:200px;height:40px;text-align:center;'><p>¡Enhorabuena!<br> Formas parte de nuestro equipo.</p></div>");
+              localStorage.alertlistad="0";
+                                                                    setTimeout(function() {
+                                                                        $('.alert').fadeTo(3200, 0.01, function() {
+                                                                            $('.alert').remove()
+                                                                        });});
+                                                                  };
+    var email = localStorage.email;
+    var dataString = "email=" + email + "&accountinf=";
+    $.ajax({
+        type: "POST",
+        url: "https://myshoppinglist.cat/app/accountinf.php",
+        data: dataString,
+        crossDomain: true,
+        cache: false,
+        dataType: 'json',
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("Hay un problema con tu conexion.");
+        },
+        success: function(data) {
+            if (data != "failed") {
+                var apellidos = data[0];
+                var CP = data[1];
+                var perm = data[2];
+                $(".user").append("<h1>¡Hola familia " + apellidos + "!</h1><a href='./settings.html'>Editar mi cuenta</a>");
+                $(".mymarkets").append("<h2 id='" + CP + "'>" + CP + "</h2><i class='ion-ios-location-outline'></i><a class='buttontomaps' href='#' onclick='scriptmaps()'>Ver mis supermercados</a><img src='./img/maps_logo.png'>");
+                if (perm == '1') {
+                    $(".helptoadd").append('<h2>Modo Listadder habilitado.</h2><div class="toggle"><input id="permissionbuttonreturn" checked type="checkbox" class="check"><b class="b switch"></b><b class="b track"></b></div><p>Puedes volver a ser un usuario normal, sin problemas ni complicaciones.</p>');
+                    $("#permissionbuttonreturn").click(function() {
+                        var email = localStorage.email;
+                        var dataString = "email=" + email + "&return=";
+                        $.ajax({
+                            type: "POST",
+                            url: "https://myshoppinglist.cat/app/permreturn.php",
+                            data: dataString,
+                            crossDomain: true,
+                            cache: false,
+                            dataType: 'json',
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                alert("Hay un problema con tu conexion.");
+                            },
+                            success: function(data) {
+                                if (data != "failed") {
+                                       setTimeout(
+                                   function() {
+                                    location.reload();
+                                        }, 350);
+                                } else {
+                                    alert("Hubo un error de permisos, inténtalo de nuevo mas tarde.");
+                                }
+                            }
+                        });
+                    });
+                } else {
+                    $(".helptoadd").append('<h2>Modo Listadder deshabilitado.</h2><div class="toggle"><input type="checkbox" id="permissionbutton" class="check"><b class="b switch"></b><b class="b track"></b></div><p>Habilitando esta opción, cuando escanees productos que no se encuentren en nuestra base datos podrás ayudarnos añadiendo la información, posteriormente será revisada y añadida.</p>');
+                    $("#permissionbutton").click(function() {
+                        var email = localStorage.email;
+                        var dataString = "email=" + email + "&perm=";
+                        $.ajax({
+                            type: "POST",
+                            url: "https://myshoppinglist.cat/app/perm.php",
+                            data: dataString,
+                            crossDomain: true,
+                            cache: false,
+                            dataType: 'json',
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                alert("Hay un problema con tu conexion.");
+                            },
+                            success: function(data) {
+                                if (data != "failed") {
+                                  localStorage.alertlistad = '1';
+                                  setTimeout(
+                                   function() {
+                                    location.reload();
+                                        }, 350);
+                                } else {
+                                    alert("Hubo un error de permisos, inténtalo de nuevo mas tarde.");
+                                }
+                            }
+                        });
+                    });
+                }
+            } else {
+                alert("Hubo un error al cargar tu perfil, intentalo de nuevo mas tarde.");
+            }
+        }
+    });
+
+});     
+      </script>
+      <script type="text/javascript">
+         function scriptmaps(){
+            var CPlink = $('.mymarkets').children('h2').attr('id');
+            window.open('https://www.google.es/maps/search/Supermercados+'+CPlink+'/', '_system', 'location=no');
+            
+         };
+      </script>
+   </body>
+</html>

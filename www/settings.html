@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/appstyle.css">
+    <script src="js/fastclick.min.js"></script>
+    <script type="text/javascript">
+        var attachFastClick = Origami.fastclick;
+        attachFastClick(document.body);
+    </script>
+</head>
+
+<body onload="onLoad()">
+    <div class="backgroundwall"></div>
+    <div class="headerboxsign animatedhead fadeIn">
+        <a class="buttonback" href="./account.html" rel="external"><i class="ion-ios-arrow-back" aria-hidden="true"></i></a>
+        <p class="titleuphead">Configuración de cuenta</p>
+    </div>
+    <div class="bodyapp animatedfadeIn">
+        <div class="rowforboxsettings">
+            <div class="boxsetting" id="infchng" style="animation-delay: 0.1s">
+                <i class="ion-person"></i>
+                <p>Información del usuario</p>
+            </div>
+            <div class="boxsetting" id="mailchng" style="animation-delay: 0.3s">
+                <i class="ion-email"></i>
+                <p>Correo electrónico</p>
+            </div>
+            <div class="boxsetting" id="pwdchng" style="animation-delay: 0.6s">
+                <i class="ion-key desplz"></i>
+                <p>Contraseña</p>
+            </div>
+            <div class="boxsetting" id="locchng" style="animation-delay: 0.8s">
+                <i class="ion-location desplz"></i>
+                <p>Ubicación</p>
+            </div>
+            <p class="byebutton animated fadeIn" onclick="byebutton()"><i class="ion-power"></i> Dar de baja de MyShoppingList</p>
+            <a class="helpcontact animated fadeIn" onclick="window.open('mailto:mailmyshoppinglist@gmail.com', '_system');">Atención técnica.</a>
+        </div>
+    </div>
+    <div id="navigation-wrapper">
+        <div class="navigation">
+            <div class="navigation-buttons">
+                <ul>
+                    <li style="width: 36.8%!important;padding-right: 0px!important;padding-left: 7%!important;">
+                        <a href="list.html">
+                            <i class="material-icons">book</i>
+                            <p>Lista</p>
+                        </a>
+                    </li>
+                    <li style="display: none;">
+                        <a href="./manager.html">
+                            <i class="material-icons">equalizer</i>
+                            <p>Gestor</p>
+                        </a>
+                    </li>
+                    <li style="display: none;">
+                        <a href="./sales.html">
+                            <i class="material-icons">local_offer</i>
+                            <p>Ofertas</p>
+                        </a>
+                    </li>
+                    <li class="selected" style="width: 36.8%!important;padding-right: 0px!important;padding-left: 7%!important;">
+                        <a href="#" id=backToTop>
+                            <i class="material-icons">account_circle</i>
+                            <p>Perfil</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/md5.min.js"></script>
+    <script type="text/javascript" src="js/index_web.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript">
+        $("#logout").click(function() {
+            localStorage.login = "false";
+            window.location.href = "start.html";
+        });
+    </script>
+    <script type="text/javascript">
+        $("#infchng").click(function() {
+            var email = localStorage.email;
+            var dataString = "email=" + email + "&chinfget=";
+            $.ajax({
+                type: "POST",
+                url: "https://myshoppinglist.cat/app/chinfget.php",
+                data: dataString,
+                crossDomain: true,
+                cache: false,
+                dataType: 'json',
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Hay un problema con tu conexion.");
+                },
+                success: function(data) {
+                    if (data != "failed") {
+                        var name = data[0];
+                        var surname = data[1];
+                        $("body").append("<div class='backgroundoverlay animated fadeIn'></div><div class='boxsettingopen name animated zoomIn'><h2>Información del usuario</h2><h1>Tus datos personales</h1><p class='name'>Nombre</p><input type='text' name='name' value='" + name + "'><p class='surname'>Apellido</p><input type='text' name='surname' value='" + surname + "'><i class='ion-person'></i><a class='save' onclick='changeinf()'><s class='ion-checkmark-circled'></s> Realizar cambios</a><a class='cancel' onclick='closebox()'><s class='ion-close-circled'></s> Cancelar</a></div>");
+                    } else {
+                        alert("Hubo un error al cargar tu perfil, inténtalo de nuevo más tarde.");
+                    }
+                }
+            });
+        });
+
+        $("#mailchng").click(function() {
+            var email = localStorage.email;
+            var dataString = "email=" + email + "&chmailget=";
+            $.ajax({
+                type: "POST",
+                url: "https://myshoppinglist.cat/app/chmailget.php",
+                data: dataString,
+                crossDomain: true,
+                cache: false,
+                dataType: 'json',
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Hay un problema con tu conexion.");
+                },
+                success: function(data) {
+                    if (data != "failed") {
+                        var mail = data[0];
+                        $("body").append("<div class='backgroundoverlay animated fadeIn'></div><div class='boxsettingopen email animated zoomIn'><h2>Correo electrónico</h2><h1>Modificar tu correo</h1><p class='mail'>Dirección de correo electrónico</p><input type='text' name='mail' value='" + mail + "'><p class='mailconfirm'>Confirmar dirección de correo electrónico</p><input type='text' name='mailconfirm' value=''><i class='ion-email'></i><a class='save' onclick='changemail()'><s class='ion-checkmark-circled'></s> Realizar cambios</a><a class='cancel' onclick='closebox()'><s class='ion-close-circled'></s> Cancelar</a></div>");
+                    } else {
+                        alert("Hubo un error al cargar tu perfil, inténtalo de nuevo mas tarde.");
+                    }
+                }
+            });
+        });
+
+        $("#pwdchng").click(function() {
+            $("body").append("<div class='backgroundoverlay animated fadeIn'></div><div class='boxsettingopen pwd animated zoomIn'><h2>Contraseña</h2><h1>Modificar contraseña</h1><p class='oldpwd'>Contraseña actual</p><input type='password' name='oldpwd' value=''><p class='newpwd'>Contraseña nueva</p><input type='password' name='newpwd' value=''><p class='newpwdconfirm'>Confirmar contraseña</p><input type='password' name='newpwdconfirm' value=''><i class='ion-key'></i><a class='save' onclick='changepassword()'><s class='ion-checkmark-circled'></s> Realizar cambios</a><a class='cancel' onclick='closebox()'><s class='ion-close-circled'></s> Cancelar</a></div>")
+        });
+
+        $("#locchng").click(function() {
+            var email = localStorage.email;
+            var dataString = "email=" + email + "&chcpget=";
+            $.ajax({
+                type: "POST",
+                url: "https://myshoppinglist.cat/app/chcpget.php",
+                data: dataString,
+                crossDomain: true,
+                cache: false,
+                dataType: 'json',
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Hay un problema con tu conexion.");
+                },
+                success: function(data) {
+                    if (data != "failed") {
+                        var CP = data[0];
+                        $("body").append("<div class='backgroundoverlay animated fadeIn'></div><div class='boxsettingopen loc animated zoomIn'><h2>Localización</h2><h1>Tu código postal</h1><p class='cp'>Código Postal</p><input type='number' name='cp' value='" + CP + "'><i class='ion-location'></i><a class='save' onclick='changecp()'><s class='ion-checkmark-circled'></s> Realizar cambios</a><a class='cancel' onclick='closebox()'><s class='ion-close-circled'></s> Cancelar</a></div>");
+                    } else {
+                        alert("Hubo un error al cargar tu perfil, inténtalo de nuevo mas tarde.");
+                    }
+                }
+            });
+        });
+
+        function closebox() {
+            $('.boxsettingopen').fadeOut("normal", function() {
+                $('.boxsettingopen').remove()
+            });
+            $('.backgroundoverlay').fadeOut("normal", function() {
+                $('.backgroundoverlay').remove()
+            });
+        };
+
+        function closebox2() {
+            $('.byebox').fadeOut("normal", function() {
+                $('.byebox').remove()
+            });
+        };
+
+        function byebutton() {
+            $('body').append("<div class='byebox animated bounceIn'><h1>Estas seguro de que deseas eliminar tu cuenta?</h1><p>Perderás toda tu información, lista y productos añadidos hasta ahora.</p><a class='save' onclick='closeaccount()'><s class='ion-checkmark-circled'></s> Eliminar cuenta</a><a class='cancel' onclick='closebox2()'><s class='ion-close-circled'></s> Cancelar</a></div>");
+        };
+
+        function changeinf() {
+            var email = localStorage.email;
+            var nam = $("input[name='name']").val();
+            var sur = $("input[name='surname']").val();
+            var dataString = "email=" + email + "&nam=" + nam + "&sur=" + sur + "&chinfp=";
+            if (!($.trim(nam).length > 0 & $.trim(sur).length > 0)) {
+                alert('No puede quedar ningún campo vacío.');
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "https://myshoppinglist.cat/app/chinfp.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    dataType: 'json',
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Hay un problema con tu conexion.");
+                    },
+                    success: function(data) {
+                        if (data != "failed") {
+                            $("body").append("<div class='alert animated slideInLeft adding'><p>Tu información se ha actualizado.</p></div>");
+                            $('.boxsettingopen').fadeOut("normal", function() {
+                                $('.boxsettingopen').remove()
+                            });
+                            $('.backgroundoverlay').fadeOut("normal", function() {
+                                $('.backgroundoverlay').remove()
+                            });
+                            setTimeout(function() {
+                                $('.adding').fadeTo(2000, 0.01, function() {
+                                    $('.adding').remove()
+                                });
+                            }, 2500);
+                        } else {
+                            alert("Hubo un error al cargar tu perfil, inténtalo de nuevo mas tarde.");
+                        }
+                    }
+                });
+            };
+
+        };
+
+        function changemail() {
+            var email = localStorage.email;
+            var emailnew = $("input[name='mail']").val();
+            var emailnewconfirm = $("input[name='mailconfirm']").val();
+            if (!($.trim(email).length > 0 & $.trim(emailnew).length > 0 & $.trim(emailnewconfirm).length > 0)) {
+                alert('No puede quedar ningún campo vacío.');
+            } else {
+                if (!isValidEmail(emailnew)) {
+                    window.alert("El correo electronico introducido no es válido.");
+                } else {
+                    if (emailnew == emailnewconfirm) {
+                        var dataString = "email=" + email + "&emailnew=" + emailnew + "&chmailp=";
+                        $.ajax({
+                            type: "POST",
+                            url: "https://myshoppinglist.cat/app/chmailp.php",
+                            data: dataString,
+                            crossDomain: true,
+                            cache: false,
+                            dataType: 'json',
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                alert("Hay un problema con tu conexion.");
+                            },
+                            success: function(data) {
+                                if (data != "failed") {
+                                    $("body").append("<div class='alert animated slideInLeft adding'><p>Tu correo electronico ha cambiado.</p></div>");
+                                    $('.boxsettingopen').fadeOut("normal", function() {
+                                        $('.boxsettingopen').remove()
+                                    });
+                                    $('.backgroundoverlay').fadeOut("normal", function() {
+                                        $('.backgroundoverlay').remove()
+                                    });
+                                    setTimeout(function() {
+                                        $('.adding').fadeTo(2000, 0.01, function() {
+                                            $('.adding').remove()
+                                        });
+                                    }, 2500);
+                                    setTimeout(function() {
+                                        localStorage.login = "false";
+                                        window.location.href = "start.html";
+                                    }, 3000);
+                                } else {
+                                    alert("Ha habido un error.");
+                                }
+                            }
+                        });
+                    } else {
+                        alert('Los correos no coinciden.')
+                    }
+                };
+            };
+        };
+
+        function changepassword() {
+            var email = localStorage.email;
+            var decryptedold = $("input[name='oldpwd']").val();
+            var decryptednew = $("input[name='newpwd']").val();
+            var confpassword = $("input[name='newpwdconfirm']").val();
+            event.preventDefault()
+            var oldpassword = md5(decryptedold);
+            var newpassword = md5(decryptednew);
+            var dataString = "oldpassword=" + oldpassword + "&newpassword=" + newpassword + "&email=" + email + "&chpwdp=";
+            if (!($.trim(decryptedold).length > 0 & $.trim(decryptednew).length > 0 & $.trim(confpassword).length > 0)) {
+                alert('No puede quedar ningún campo vacío.');
+            } else {
+                if (decryptednew == confpassword) {
+                    $.ajax({
+                        type: "POST",
+                        url: 'https://myshoppinglist.cat/app/chpwdp.php',
+                        data: dataString,
+                        crossDomain: true,
+                        cache: false,
+                        success: function(data) {
+                            if (data = "success") {
+                                $("body").append("<div class='alert animated slideInLeft adding'><p>Tu contraseña ha cambiado.</p></div>");
+                                $('.boxsettingopen').fadeOut("normal", function() {
+                                    $('.boxsettingopen').remove()
+                                });
+                                $('.backgroundoverlay').fadeOut("normal", function() {
+                                    $('.backgroundoverlay').remove()
+                                });
+                                setTimeout(function() {
+                                    $('.adding').fadeTo(2000, 0.01, function() {
+                                        $('.adding').remove()
+                                    });
+                                }, 2500);
+                                setTimeout(function() {
+                                    localStorage.login = "false";
+                                    window.location.href = "start.html";
+                                }, 3000);
+                            } else if (data = "failed") {
+                                alert("Contraseña actual incorrecta.");
+                            }
+                        }
+                    });
+                } else {
+                    alert('Las contraseñas introducidas no coinciden.')
+                }
+            }
+            return false;
+        };
+
+        function changecp() {
+            var email = localStorage.email;
+            var cp = $("input[name='cp']").val();
+            var dataString = "email=" + email + "&cp=" + cp + "&chcpp=";
+            if (!($.trim(cp).length > 0)) {
+                alert('No puede quedar ningún campo vacío.');
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "https://myshoppinglist.cat/app/chcpp.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    dataType: 'json',
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Hay un problema con tu conexion.");
+                    },
+                    success: function(data) {
+                        if (data != "failed") {
+                            $("body").append("<div class='alert animated slideInLeft adding'><p>Ubicación modificada.</p></div>");
+                            $('.boxsettingopen').fadeOut("normal", function() {
+                                $('.boxsettingopen').remove()
+                            });
+                            $('.backgroundoverlay').fadeOut("normal", function() {
+                                $('.backgroundoverlay').remove()
+                            });
+                            setTimeout(function() {
+                                $('.adding').fadeTo(2000, 0.01, function() {
+                                    $('.adding').remove()
+                                });
+                            }, 2500);
+                        } else {
+                            alert("Hubo un error al cargar tu perfil, inténtalo de nuevo más tarde.");
+                        }
+                    }
+                });
+            };
+
+        };
+
+        function isValidEmail(mail) {
+            return /^\w+([\.\+\-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail);
+        }
+
+        function closeaccount() {
+            var email = localStorage.email;
+            var dataString = "email=" + email + "&clsacc=";
+            $.ajax({
+                type: "POST",
+                url: "https://myshoppinglist.cat/app/clsacc.php",
+                data: dataString,
+                crossDomain: true,
+                cache: false,
+                dataType: 'json',
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Hay un problema con tu conexion.");
+                },
+                success: function(data) {
+                    if (data != "failed") {
+                        $("body").append("<div class='alert animated slideInLeft adding'><p>Cuenta eliminada.</p></div>");
+                        $('.boxsettingopen').fadeOut("normal", function() {
+                            $('.boxsettingopen').remove()
+                        });
+                        setTimeout(function() {
+                            $('.adding').fadeTo(2000, 0.01, function() {
+                                $('.adding').remove()
+                            });
+                        }, 2500);
+                        setTimeout(function() {
+                            localStorage.login = "false";
+                            window.location.href = "start.html";
+                        }, 3000);
+                    } else {
+                        alert("Hubo un error... inténtalo de nuevo más tarde.");
+                    }
+                }
+            });
+        };
+    </script>
+</body>

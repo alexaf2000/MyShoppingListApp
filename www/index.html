@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+   <meta charset="UTF-8">
+   <title>My Shopping List</title>
+   <link rel="stylesheet" href="./splash_files/css/style.css">
+   <link rel="stylesheet" href="./css/animate.css">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+   <div class="panel bottom">
+      <div class="scroll"></div>
+   </div>
+   <img src="./splash_files/logo.png" class="animated fadeIn" style="top:25%;left:0;right:0;height:50%;z-index: 999;position: absolute;image-rendering: crisp-edges;overflow:hidden;margin: 0 auto;">
+</body>
+<script>
+   setTimeout(function(){
+      window.location.href = './lang.html';
+   }, 2900);
+</script>
+<script type="text/javascript" src="cordova.js"></script>
+<script src="./js/jquery.js"></script>
+<script type="text/javascript">
+	cordova.getAppVersion.getVersionNumber(function (version) {
+    alert(version);
+});
+</script>
+</html>
