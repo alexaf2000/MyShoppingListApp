@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" type="text/css" href="./fonts/ionicons/css/ionicons.min.css">
-      <link rel="stylesheet" type="text/css" href="./css/appstyle.css">
-      <script src = "js/fastclick.min.js"></script>
-      <script type="text/javascript">
-         var attachFastClick = Origami.fastclick;
-         attachFastClick(document.body);
-      </script>
-   </head>
-   <body onload="bbutton()">
-      <div class="backgroundwall"></div>
-      <div class="frontwall"></div>
-      <div class="headerboxsign listhead animatedhead fadeIn">
-         <p class="titleuphead">Mi Lista</p>
-         <div class="bardown">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/appstyle.css">
+    <script src="js/fastclick.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        var attachFastClick = Origami.fastclick;
+        attachFastClick(document.body);
+    </script>
+</head>
+
+<body onload="bbutton()">
+    <div class="backgroundwall"></div>
+    <div class="frontwall"></div>
+    <div class="headerboxsign listhead animatedhead fadeIn">
+        <p class="titleuphead">Mi Lista</p>
+        <div class="bardown">
             <div class="search" style="display: none;">
-               <i class="ion-ios-search iconsearch"></i>
-               <input class="searcher animated slideInLeft" type="text" name="Buscar" id="searchbox" placeholder="Buscar" />
-               <a class="buttonclosesearch animated fadeIn"><i class="ion-ios-close-empty"></i></a>
+                <i class="ion-ios-search iconsearch"></i>
+                <input class="searcher animated slideInLeft" type="text" name="Buscar" id="searchbox" placeholder="Buscar" />
+                <a class="buttonclosesearch animated fadeIn"><i class="ion-ios-close-empty"></i></a>
             </div>
             <div class="searchcontent">
-               <!--div class="searchitem">
+                <!--div class="searchitem">
                   <div class="contentitemsearch">
                     <h1>Pizza</h1>
                     <h2>Hacendado</h2>
-                    <img src="https://myshoppinglist.cat/app/images/pizza.png">
+                    <img src=baseURL+"/app/images/pizza.png">
                     <p class="size">1 Litro</p>
                     <p class="price">1€</p>
                   </div>
@@ -39,461 +42,440 @@
                   <p class="size">1 Litro</p>
                   <p class="price">2.99€</p>
                   </div>
-                  </div--> 
+                  </div-->
             </div>
             <div class="buttonshead animated fadeIn">
-               <a class="buttonsearch" id="buttonsearch" ><i class="ion-ios-search-strong"></i></a>
-               <a class="buttonscan" href="#" onclick="boton()" ><i class="ion-ios-barcode-outline"></i></a>
-               <a class="buttonupdate"><i class="ion-ios-refresh"></i></a>
+                <a class="buttonsearch" id="buttonsearch"><i class="ion-ios-search-strong"></i></a>
+                <a class="buttonscan" href="#" onclick="boton()"><i class="ion-ios-barcode-outline"></i></a>
+                <a class="buttonupdate"><i class="ion-ios-refresh"></i></a>
             </div>
-         </div>
-      </div>
-      <div class="bodyapp bodylist animated fadeIn">
-         <div class="listitems">
-            <!--div class="underitem animated fadeIn">
-               <a class="buttonerase"><i class="ion-ios-trash"></i></a>
-               <a class="buttonadd"><i class="ion-plus-round"></i></a>
-               <a class="buttonless"><i class="ion-minus-round"></i></a>
-               </div>
-               <div class="item">
-               <div class="image_product" style="background-image: url(https://myshoppinglist.cat/app/images/pizza.png)">
-               <input type="hidden" id="id" value=""/>
-               <h1>Pizza Barbacoa</h1>
-               <h2>Campofrio</h2>
-               <p class="size">150g</p>
-               <p class="price">1.99€</p>
-               <p class="quantity">2</p>
-               </div>
-               </div>
-               <div class="underitem animated fadeIn">
-               <h2>Test</h2>
-               </div>
-                 <div class="item">
-               <div class="image_product" style="background-image: url(https://myshoppinglist.cat/app/images/pizza.png)">
-               <h1>Pizza Barbacoa</h1>
-               <h2>Campofrio</h2>
-               <p class="size">150g</p>
-               <p class="price">1.99€</p>
-               <p class="quantity">2</p>
-               </div>
-               </div-->
-         </div>
-      </div>
-      <div id="navigation-wrapper">
-         <div class="navigation">
+        </div>
+    </div>
+    <div class="bodyapp bodylist animated fadeIn">
+        <div class="listitems">
+
+        </div>
+    </div>
+    <div id="navigation-wrapper">
+        <div class="navigation">
             <div class="navigation-buttons">
-               <ul>
-                  <li class="selected" style="width: 36.8%!important;padding-right: 0px!important;padding-left: 7%!important;">
-                     <a href="#" id=backToTop>
-                        <i class="material-icons">book</i>
-                        <p>Lista</p>
-                     </a>
-                  </li>
-                  <li style="display: none;">
-                     <a href="./manager.html">
-                        <i class="material-icons">equalizer</i>
-                        <p>Gestor</p>
-                     </a>
-                  </li>
-                  <li style="display: none;">
-                     <a href="./sales.html">
-                        <i class="material-icons">local_offer</i>
-                        <p>Ofertas</p>
-                     </a>
-                  </li>
-                  <li style="width: 36.8%!important;padding-right: 0px!important;padding-left: 7%!important;">
-                     <a href="./account.html">
-                        <i class="material-icons">account_circle</i>
-                        <p>Perfil</p>
-                     </a>
-                  </li>
-               </ul>
+                <ul>
+                    <li class="selected" style="width: 36.8%!important;padding-right: 0px!important;padding-left: 7%!important;">
+                        <a href="#" id=backToTop>
+                            <i class="material-icons">book</i>
+                            <p>Lista</p>
+                        </a>
+                    </li>
+                    <li style="display: none;">
+                        <a href="./manager.html">
+                            <i class="material-icons">equalizer</i>
+                            <p>Gestor</p>
+                        </a>
+                    </li>
+                    <li style="display: none;">
+                        <a href="./sales.html">
+                            <i class="material-icons">local_offer</i>
+                            <p>Ofertas</p>
+                        </a>
+                    </li>
+                    <li style="width: 36.8%!important;padding-right: 0px!important;padding-left: 7%!important;">
+                        <a href="./account.html">
+                            <i class="material-icons">account_circle</i>
+                            <p>Perfil</p>
+                        </a>
+                    </li>
+                </ul>
             </div>
-         </div>
-      </div>
-      <script type="text/javascript">
-         app.initialize();
-      </script>
-      <script type="text/javascript">
-                function closebox() {
-                    $('.boxsettingopen').fadeOut("normal", function() {
-                        $('.boxsettingopen').remove()
-                    });
-                    $('.backgroundoverlay').fadeOut("normal", function() {
-                        $('.backgroundoverlay').remove()
-                    });
-                };
-                function adddb() {
-                                                    var email = localStorage.email;
-                                                    var productdb = $("input[name='productdb']").val();
-                                                    var branddb = $("input[name='branddb']").val();
-                                                    var sizedb = $("input[name='sizedb']").val();
-                                                    var barcode = $("input[name='barcodedb']").val();
-                                                    var dataString = "email=" + email + "&productdb=" + productdb + "&branddb=" + branddb + "&sizedb=" + sizedb + "&barcode=" + barcode + "&adddb=";
-                                                    if (!($.trim(productdb).length > 0 & $.trim(branddb).length > 0)) {
-                                                        alert('No puedes insertar un producto vacío.');
-                                                    } else {
-                                                        $.ajax({
-                                                            type: "POST",
-                                                            url: "https://myshoppinglist.cat/app/adddb.php",
-                                                            data: dataString,
-                                                            crossDomain: true,
-                                                            cache: false,
-                                                            dataType: 'json',
-                                                            error: function(XMLHttpRequest, textStatus, errorThrown) {
-                                                                alert("Hay un problema con tu conexión.");
-                                                            },
-                                                            success: function(data) {
-                                                                if (data != "failed") {
-                                                                  $('.backgroundoverlay').remove()
-                                                                  $('.boxsettingopen').remove()
-                                                                    $("body").append("<div class='alert animated slideInLeft adding'><p>¡Gracias! Producto añadido.</p></div>");
-                                                                    setTimeout(function() {
-                                                                        $('.alert').fadeTo(2000, 0.01, function() {
-                                                                            $('.alert').remove()
-                                                                        });
-                                                                    }, 2500);
-                                                                } else {
-                                                                    alert("Hubo un error al cargar tu perfil, inténtalo de nuevo mas tarde.");
-                                                                    location.reload();
-                                                                }
-                                                            }
-                                                        });
-                                                    };
+        </div>
+    </div>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+    <script type="text/javascript">
+        function closebox() {
+            $('.boxsettingopen').fadeOut("normal", function() {
+                $('.boxsettingopen').remove()
+            });
+            $('.backgroundoverlay').fadeOut("normal", function() {
+                $('.backgroundoverlay').remove()
+            });
+        };
 
-                                                };
-
-                function boton() {
-                    cordova.plugins.barcodeScanner.scan(
-                        function(result) {
-                            if (result.cancelled == true) {} else {
-                                var email = localStorage.email;
-                                var barcode = result.text;
-                                var dataString = "email=" + email + "&barcode=" + barcode + "&scan=";
-                                $.ajax({
-                                    type: "POST",
-                                    url: "https://myshoppinglist.cat/app/scan.php",
-                                    data: dataString,
-                                    crossDomain: true,
-                                    cache: false,
-                                    dataType: 'json',
-                                    error: function(XMLHttpRequest, textStatus, errorThrown) {
-                                        alert("Parece ser que no tienes conexión a internet. ¡Conectate y prueba de nuevo!");
-                                    },
-                                    success: function(data) {
-                                        if (data != "failed" && data != "failedandadd") {
-                                            var product_scan_name = data[0];
-                                            var product_scan_brand = data[1];
-                                            var product_scan_price = data[2];
-                                            var product_scan_size = data[3];
-                                            var product_scan_image = data[4];
-                                            var image404 = "this.parentNode.style.background='url(https://myshoppinglist.cat/app/images/404es.png)';this.style.display='none'";
-                                            $(".frontwall").append("<div class='newproductbox animated zoomIn'><div class='contentnewproductbox' style='background: url(" + product_scan_image + ");'><img style='display: none;' src='" + product_scan_image + "' onerror=" + image404 + "><h1>Has añadido...</h1><h2 class='productname'>" + product_scan_name + "</h2><h2 class='productbrand'>" + product_scan_brand + "</h2><p class='productsize'>" + product_scan_size + "</p><p class='productprice'>" + product_scan_price + "€</p></div></div>");
-                                            setTimeout(function() {
-                                                $('.newproductbox').fadeTo(1000, 0.01, function() {
-                                                    $('.newproductbox').remove()
-                                                });
-                                                location.reload();
-                                            }, 2800);
-                                        } else {
-                                            if (data == "failed") {
-                                                $(".frontwall").append("<div class='newproductbox animated zoomIn'><div class='contentnewproductbox'><h1>Ups...</h1><h2 class='facefail'><i class='ion-android-sad'></i></h2><h2 class='productname failed'>No hemos podido rastrear tu producto. Nos ha fallado nuestro olfato.</h2><h2 class='productname failed2'>¿Por que no nos prestas un par de días?</h2></div></div>");
-                                                setTimeout(function() {
-                                                    $('.newproductbox').fadeTo(1000, 0.01, function() {
-                                                        $('.newproductbox').remove()
-                                                    });
-                                                }, 3050);
-                                            }
-                                            if (data == "failedandadd") {
-                                                $(".frontwall").append("<div class='newproductbox animated zoomIn'><div class='contentnewproductbox'><h1>Ups...</h1><h2 class='facefail'><i style='text-shadow:0 0 3px black;' class='ion-ios-paperplane'></i></h2><h2 class='productname failed'>No disponible en nuestra base de datos.</h2><h2 class='productname failed2'>¡Añadelo tu mismo!</h2></div></div>");
-                                                setTimeout(function() {
-                                                    $('.newproductbox').fadeTo(500, 0.01, function() {
-                                                        $('.newproductbox').remove();
-                                                        $("body").append("<div class='backgroundoverlay animated fadeIn'></div><div class='boxsettingopen name animated zoomIn'><h2>Añadir un producto</h2><h1>Información del producto</h1><p id='barcodetodb'>" + barcode + "</h2><input name='barcodedb' type='hidden' value='"+barcode+"'><p class='productdb'>Nombre descriptivo</p><input type='text' maxlength='30' name='productdb'><p class='branddb'>Marca</p><input type='text' name='branddb' maxlength='20'><p class='sizedb'>Tamaño</p><input type='text' name='sizedb' maxlength='11'><i class='ion-clipboard'></i><a class='save' onclick='adddb()'><s class='ion-checkmark-circled'></s> Añadir</a><a class='cancel' onclick='closebox()'><s class='ion-close-circled'></s> Cancelar</a></div>");
-                                                    });
-                                                }, 1450);
-                                            }
-                                        }
-                                    }
+        function adddb() {
+            var email = localStorage.email;
+            var productdb = $("input[name='productdb']").val();
+            var branddb = $("input[name='branddb']").val();
+            var sizedb = $("input[name='sizedb']").val();
+            var barcode = $("input[name='barcodedb']").val();
+            var dataString = "email=" + email + "&productdb=" + productdb + "&branddb=" + branddb + "&sizedb=" + sizedb + "&barcode=" + barcode + "&adddb=";
+            if (!($.trim(productdb).length > 0 & $.trim(branddb).length > 0)) {
+                alert('No puedes insertar un producto vacío.');
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + "/app/adddb.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    dataType: 'json',
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Hay un problema con tu conexión.");
+                    },
+                    success: function(data) {
+                        if (data != "failed") {
+                            $('.backgroundoverlay').remove()
+                            $('.boxsettingopen').remove()
+                            $("body").append("<div class='alert animated slideInLeft adding'><p>¡Gracias! Producto añadido.</p></div>");
+                            setTimeout(function() {
+                                $('.alert').fadeTo(2000, 0.01, function() {
+                                    $('.alert').remove()
                                 });
-                            }
-                        },
-                        function(error) {
-                            alert("Scanning failed: " + error);
-                        }, {
-                            resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-                            orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
-                            disableSuccessBeep: false // iOS and Android
+                            }, 2500);
+                        } else {
+                            alert("Hubo un error al cargar tu perfil, inténtalo de nuevo mas tarde.");
+                            location.reload();
                         }
-                    );
-                };
-      </script>
-      <script type="text/javascript">
-         function bbutton() {
-                 document.addEventListener("deviceready", onDeviceReady, false);
-             }
-             function onDeviceReady() {
-                 // Register the event listener
-                 document.addEventListener("backbutton", onBackKeyDown, false);
-             }
-             // Handle the back button
-             //
-               function onBackKeyDown() {
-               navigator.app.exitApp();
-             }
-      </script>
-   </body>
-   <script type="text/javascript" src="cordova.js"></script>
-   <script src="./js/jquery.js"></script>
-   <script type="text/javascript" src="./js/swiped.min.js"></script>
-   <script type="text/javascript" src="js/index_web.js"></script>
-   <script type="text/javascript">
-      $(document).ready(function() {
-          $("body").append("<div class='loading'><div class='binding'></div><div class='pad'><div class='line line1'></div><div class='line line2'></div><div class='line line3'></div></div><div class='text'>Cargando tu lista...</div></div>")
-          var email = localStorage.email;
-          var url = "https://myshoppinglist.cat/app/listitems.php?email=" + email + "";
-          var json = $.getJSON(url, function(result) {
-              $(".loading").remove()
-              console.log(result);
-              if ($.isEmptyObject(result)) {
-                  $(".bodyapp").hide().append("<p class='listisblank'>Tu lista está vacía.</p>").show();
-              }
-              $.each(result, function(i, field) {
-                  var id = field.id_list;
-                  var productname = field.product_name;
-                  var quantity = field.quantity;
-                  var image = field.product_image;
-                  var size = field.product_size;
-                  var price = field.product_price;
-                  var brand = field.brand_name;
-                  $(".listitems").hide().append("<div class='underitem animated fadeIn' id='" + id + "'><a class='buttonerase'><i class='ion-ios-trash'></i></a><a class='buttonadd'><i class='ion-plus-round'></i></a><a class='buttonless'><i class='ion-minus-round'></i></a></div><div class='item' id='" + id + "i'><div class='image_product' style='background-image: url(" + image + ")'><h1>" + productname + "</h1><h2>" + brand + "</h2><p class='size'>" + size + "</p><p class='price'>" + price + "€</p><p class='quantity'>" + quantity + "</p></div></div>").show();
-              });
-              if (!$.isEmptyObject(result)) {
-                  $('.bodyapp').append('<button class="animated fadeIn" id="sharelist"><i class="ion-share"></i><span>Compartir</span></button>');
-              }
-              $("#sharelist").click(function() {
-                  SpinnerPlugin.activityStart("Generando tu lista...");
-                  $('#pdfcontent').remove();
-                  $('body').append('<input type="hidden" id="pdfcontent" value="">');
-                  var email = localStorage.email;
-                  var url = "https://myshoppinglist.cat/app/listitems.php?email=" + email + "";
-                  var json = $.getJSON(url, function(result) {
-                      console.log(result);
-                      $.each(result, function(i, field) {
-                          var id = field.id_list;
-                          var productname = field.product_name;
-                          var quantity = field.quantity;
-                          var image = field.product_image;
-                          var size = field.product_size;
-                          var price = field.product_price;
-                          var brand = field.brand_name;
-                          $('#pdfcontent').val($('#pdfcontent').val() + '<tr><th><img src="' + image + '" onerror=this.src="https://myshoppinglist.cat/app/images/404es.png"></th><td>' + productname + '</td><td>' + brand + '</td><td>' + size + '</td><td>' + price + '€</td><td>' + quantity + ' Ud.</td></tr>');
-                      });
-                      var lista = document.getElementById("pdfcontent").value;
-                      pdf.htmlToPDF({
-                          data: '<html><style type="text/css">html {font-family: Arial;background: linear-gradient(to right, #243B55, #141E30);background-attachment: fixed;color: white;}h1 {font-size: 100%;margin-top: 65px;margin-left: 15px;}table {padding: 20px;width: 95%;text-align: center;}img {width: 45px;}.right {position: absolute;right: 25px;top: -38px;font-style: italic;}h2 {text-align: center;font-size: 85%;margin-top: 25px;}.apple {width: 85px;position: absolute;left: 95px;}.google {width: 108px;position: absolute;right: 95px;}.testapp {position: absolute;right: 0px;left: 0px;margin: auto;margin-top: -5px;}</style><h1>¡Han compartido una lista contigo!</h1><h1 class="right">MyShoppingList</h1><table><tr><th></th><th>Producto</th><th>Marca</th><th>Tamaño</th><th>Precio</th><th>Cantidad</th></tr>' + lista + '</table><h2>Esta lista ha sido realizada con MyShoppingList.</h2><a href="#"><img class="apple" src="https://myshoppinglist.cat/files/images/others/apple.png"></a><a href="https://play.google.com/store/apps/details?id=com.axstudios.myshoppinglist"><img class="google" src="https://myshoppinglist.cat/files/images/others/google.png"></a><img class="testapp" src="https://myshoppinglist.cat/files/images/homeimage.png"></html>',
-                          documentSize: 'A4',
-                          landscape: 'portrait',
-                          type: 'share', //use share to open the open-with-menu.
-                          fileName: 'MiLista.pdf'
-                      }, this.success, this.failure);
-                      SpinnerPlugin.activityStop();
-                  });
-              });
-              var a2 = Swiped.init({
-                  query: '.item',
-                  right: 125
-              });
-              $(".buttonerase").click(function() {
-                  navigator.vibrate(25);
-                  var email = localStorage.email;
-                  var id = $(this).parent().attr('id');
-                  var dataString = "email=" + email + "&id=" + id + "&delete=";
-                  $.ajax({
-                      type: "POST",
-                      url: "https://myshoppinglist.cat/app/deleteitem.php",
-                      data: dataString,
-                      crossDomain: true,
-                      cache: false,
-                      error: function(XMLHttpRequest, textStatus, errorThrown) {
-                          alert("Hubo un error al eliminar este producto... Intentaremos solucionarlo");
-                      },
-                      success: function(data) {
-                          if (data == "success") {
-                              $("body").append("<div class='alert animated slideInLeft deleting'><p>Producto eliminado</p></div>");
-                              setTimeout(function() {
-                                  $('.deleting').fadeTo(600, 0.01, function() {
-                                      $('.deleting').remove()
-                                  });
-                              }, 800);
-                              setTimeout(function() {
-                                  location.reload();
-                              }, 900);
-                          } else if (data = "failed") {
-                              alert("Hubo un error al eliminar el producto.");
-                          }
-                      }
-                  });
-                  return false;
-              });
-              $(".buttonadd").click(function() {
-                  navigator.vibrate(55);
-                  var email = localStorage.email;
-                  var id = $(this).parent().attr('id');
-                  var dataString = "email=" + email + "&id=" + id + "&add=";
-                  var quantity = $('.item#' + id + 'i .quantity').text();
-                  (quantity++);
-                  $('.item#' + id + 'i .quantity').html(quantity);
-                  $.ajax({
-                      type: "POST",
-                      url: "https://myshoppinglist.cat/app/addtoitem.php",
-                      data: dataString,
-                      crossDomain: true,
-                      cache: false,
-                      error: function(XMLHttpRequest, textStatus, errorThrown) {
-                          alert("Hay un problema con tu conexión.");
-                          var quantity = $('.item#' + id + 'i .quantity').text();
-                          (quantity--);
-                          $('.item#' + id + 'i .quantity').html(quantity);
-                      },
-                      success: function(data) {
-                          if (data == "success") {
+                    }
+                });
+            };
 
-                          } else if (data = "failed") {
-                              alert("Hubo un error al eliminar el producto.");
-                              var quantity = $('.item#' + id + 'i .quantity').text();
-                              (quantity--);
-                              $('.item#' + id + 'i .quantity').html(quantity);
-                          }
-                      }
-                  });
-                  return false;
-              });
-              $(".buttonless").click(function() {
-                  navigator.vibrate(55);
-                  var email = localStorage.email;
-                  var id = $(this).parent().attr('id');
-                  var dataString = "email=" + email + "&id=" + id + "&less=";
-                  var quantity = $('.item#' + id + 'i .quantity').text();
-                  (quantity--);
-                  $('.item#' + id + 'i .quantity').html(quantity);
-                  $.ajax({
-                      type: "POST",
-                      url: "https://myshoppinglist.cat/app/lesstoitem.php",
-                      data: dataString,
-                      crossDomain: true,
-                      cache: false,
-                      error: function(XMLHttpRequest, textStatus, errorThrown) {
-                          alert("Ups, hay algún problema con tu conexión...");
-                          var quantity = $('.item#' + id + 'i .quantity').text();
-                          (quantity++);
-                          $('.item#' + id + 'i .quantity').html(quantity);
-                      },
-                      success: function(data) {
-                          if (data == "success") {} else if (data = "failed") {
-                              alert("Hay un problema! No estarás intentando quedarte con 0 productos...?");
-                              var quantity = $('.item#' + id + 'i .quantity').text();
-                              (quantity++);
-                              $('.item#' + id + 'i .quantity').html(quantity);
-                          }
-                      }
-                  });
-                  return false;
-              });
-          });
-      });
-   </script>
-   <script>
-      $(document).ready(function() {
-          $("#searchbox").on('keyup', function() {
-              var key = $(this).val();
-              if ($.trim($("#searchbox").val()) == '') {
-                  $(".searchitem").remove();
-              } else {
-                  var url = "https://myshoppinglist.cat/app/searchbar.php?search=" + key + "";
-                  var json = $.getJSON(url, function(result) {
-                      console.log(result);
-                      $(".searchitem").remove();
-                      $.each(result, function(i, field) {
-                          var id = field.id_product;
-                          var productname = field.product_name;
-                          var image = field.product_image;
-                          var size = field.product_size;
-                          var price = field.product_price;
-                          var brand = field.brand_name;
-                          var searchproduct = $(".searchcontent").append("<div class='searchitem'><div class='contentitemsearch' id='" + id + "'><h1>" + productname + "</h1><h2>" + brand + "</h2><img src='" + image + "' onerror=this.src='https://myshoppinglist.cat/app/images/404es.png'><p class='size'>" + size + "</p><p class='price'>" + price + "€</p></div></div>");
-                          $("div.searchitem").hide().show("fast");
-                      });
-                      $(".contentitemsearch").click(function() {
-                          var productnametoadd = $(this).children('h1').text();
-                          var brandtoadd = $(this).children('h2').text();
-                          var idtoadd = $(this).attr('id');
-                          $(".boxtoadd").remove();
-                          $(".searcher").val("");
-                          $('.searcher').keyup();
-                          $("body").append("<div class='boxtoadd animated zoomIn' id='" + idtoadd + "'><h1>¿Deseas añadir a tu lista</h1><h2><b>" + productnametoadd + "</b> de <b>" + brandtoadd + "</b>?</h2><a class='acceptadd'><i class='ion-checkmark'></i></a><a class='deniedadd'><i class='ion-close'></i></a></div>");
-                          $(".acceptadd").click(function() {
-                              var email = localStorage.email;
-                              var id = $(this).parent().attr('id');
-                              var dataString = "email=" + email + "&id=" + id + "&addtolist=";
-                              $.ajax({
-                                  type: "POST",
-                                  url: "https://myshoppinglist.cat/app/addtolist.php",
-                                  data: dataString,
-                                  crossDomain: true,
-                                  cache: false,
-                                  error: function(XMLHttpRequest, textStatus, errorThrown) {
-                                      alert("Ups... Hay un problema con tu conexión.");
-                                  },
-                                  success: function(data) {
-                                      if (data == "success") {
+        };
+
+        function boton() {
+            cordova.plugins.barcodeScanner.scan(
+                function(result) {
+                    if (result.cancelled == true) {} else {
+                        var email = localStorage.email;
+                        var barcode = result.text;
+                        var dataString = "email=" + email + "&barcode=" + barcode + "&scan=";
+                        $.ajax({
+                            type: "POST",
+                            url: baseURL + "/app/scan.php",
+                            data: dataString,
+                            crossDomain: true,
+                            cache: false,
+                            dataType: 'json',
+                            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                alert("Parece ser que no tienes conexión a internet. ¡Conectate y prueba de nuevo!");
+                            },
+                            success: function(data) {
+                                if (data != "failed" && data != "failedandadd") {
+                                    var product_scan_name = data[0];
+                                    var product_scan_brand = data[1];
+                                    var product_scan_price = data[2];
+                                    var product_scan_size = data[3];
+                                    var product_scan_image = data[4];
+                                    var image404 = "this.parentNode.style.background='url(" + baseURL + "/app/images/404es.png)';this.style.display='none'";
+                                    $(".frontwall").append("<div class='newproductbox animated zoomIn'><div class='contentnewproductbox' style='background: url(" + product_scan_image + ");'><img style='display: none;' src='" + product_scan_image + "' onerror=" + image404 + "><h1>Has añadido...</h1><h2 class='productname'>" + product_scan_name + "</h2><h2 class='productbrand'>" + product_scan_brand + "</h2><p class='productsize'>" + product_scan_size + "</p><p class='productprice'>" + product_scan_price + "€</p></div></div>");
+                                    setTimeout(function() {
+                                        $('.newproductbox').fadeTo(1000, 0.01, function() {
+                                            $('.newproductbox').remove()
+                                        });
+                                        location.reload();
+                                    }, 2800);
+                                } else {
+                                    if (data == "failed") {
+                                        $(".frontwall").append("<div class='newproductbox animated zoomIn'><div class='contentnewproductbox'><h1>Ups...</h1><h2 class='facefail'><i class='ion-android-sad'></i></h2><h2 class='productname failed'>No hemos podido rastrear tu producto. Nos ha fallado nuestro olfato.</h2><h2 class='productname failed2'>¿Por que no nos prestas un par de días?</h2></div></div>");
                                         setTimeout(function() {
-                                              $('.boxtoadd').fadeTo(150, 0.01, function() {
-                                                  $('.boxtoadd').remove()
-                                              });
-                                          }, 300);
-                                          $("body").append("<div class='alert animated slideInLeft adding'><p>Producto añadido correctamente</p></div>");
-                                          setTimeout(function() {
-                                              $('.adding').fadeTo(600, 0.01, function() {
-                                                  $('.adding').remove()
-                                              });
-                                          }, 800);
-                                          setTimeout(function() {
-                                              location.reload();
-                                          }, 900);
-                                      } else if (data = "failed") {
-                                          alert("Hubo un error al añadir el producto.");
-                                      }
-                                  }
-                              });
-                              return false;
-                          });
-                          $(".deniedadd").click(function() {
-                              setTimeout(function(){
-                                          $('.boxtoadd').fadeTo(100,0.01,function(){$('.boxtoadd').remove()});
-                                          }, 250);
-                          });
-                      });
-                  })
-              };
-          });
-      });
-   </script>
-   <script type="text/javascript">
-      $(".buttonsearch").click(function() {
-          $(".search").show();
-          $(".searchcontent").show();
-          $(".buttonshead").hide();
-      });
-      
-      $(".buttonclosesearch").click(function() {
-          $(".searcher").val("");
-          $('.searcher').keyup();
-          $(".search").hide();
-          $(".buttonshead").show();
-      });
-   </script>
-   <!--div class="alert animated slideInLeft">
+                                            $('.newproductbox').fadeTo(1000, 0.01, function() {
+                                                $('.newproductbox').remove()
+                                            });
+                                        }, 3050);
+                                    }
+                                    if (data == "failedandadd") {
+                                        $(".frontwall").append("<div class='newproductbox animated zoomIn'><div class='contentnewproductbox'><h1>Ups...</h1><h2 class='facefail'><i style='text-shadow:0 0 3px black;' class='ion-ios-paperplane'></i></h2><h2 class='productname failed'>No disponible en nuestra base de datos.</h2><h2 class='productname failed2'>¡Añadelo tu mismo!</h2></div></div>");
+                                        setTimeout(function() {
+                                            $('.newproductbox').fadeTo(500, 0.01, function() {
+                                                $('.newproductbox').remove();
+                                                $("body").append("<div class='backgroundoverlay animated fadeIn'></div><div class='boxsettingopen name animated zoomIn'><h2>Añadir un producto</h2><h1>Información del producto</h1><p id='barcodetodb'>" + barcode + "</h2><input name='barcodedb' type='hidden' value='" + barcode + "'><p class='productdb'>Nombre descriptivo</p><input type='text' maxlength='30' name='productdb'><p class='branddb'>Marca</p><input type='text' name='branddb' maxlength='20'><p class='sizedb'>Tamaño</p><input type='text' name='sizedb' maxlength='11'><i class='ion-clipboard'></i><a class='save' onclick='adddb()'><s class='ion-checkmark-circled'></s> Añadir</a><a class='cancel' onclick='closebox()'><s class='ion-close-circled'></s> Cancelar</a></div>");
+                                            });
+                                        }, 1450);
+                                    }
+                                }
+                            }
+                        });
+                    }
+                },
+                function(error) {
+                    alert("Scanning failed: " + error);
+                }, {
+                    resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+                    orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
+                    disableSuccessBeep: false // iOS and Android
+                }
+            );
+        };
+    </script>
+    <script type="text/javascript">
+        function bbutton() {
+            document.addEventListener("deviceready", onDeviceReady, false);
+        }
+
+        function onDeviceReady() {
+            // Register the event listener
+            document.addEventListener("backbutton", onBackKeyDown, false);
+        }
+        // Handle the back button
+        //
+        function onBackKeyDown() {
+            navigator.app.exitApp();
+        }
+    </script>
+</body>
+<script type="text/javascript" src="cordova.js"></script>
+<script src="./js/jquery.js"></script>
+<script type="text/javascript" src="./js/swiped.min.js"></script>
+<script type="text/javascript" src="js/index_web.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("body").append("<div class='loading'><div class='binding'></div><div class='pad'><div class='line line1'></div><div class='line line2'></div><div class='line line3'></div></div><div class='text'>Cargando tu lista...</div></div>")
+        var email = localStorage.email;
+        var url = baseURL + "/app/listitems.php?email=" + email + "";
+        var json = $.getJSON(url, function(result) {
+            $(".loading").remove()
+            console.log(result);
+            if ($.isEmptyObject(result)) {
+                $(".bodyapp").hide().append("<p class='listisblank'>Tu lista está vacía.</p>").show();
+            }
+            $.each(result, function(i, field) {
+                var id = field.id_list;
+                var productname = field.product_name;
+                var quantity = field.quantity;
+                var image = field.product_image;
+                var size = field.product_size;
+                var price = field.product_price;
+                var brand = field.brand_name;
+                $(".listitems").hide().append("<div class='underitem animated fadeIn' id='" + id + "'><a class='buttonerase'><i class='ion-ios-trash'></i></a><a class='buttonadd'><i class='ion-plus-round'></i></a><a class='buttonless'><i class='ion-minus-round'></i></a></div><div class='item' id='" + id + "i'><div class='image_product' style='background-image: url(" + image + ")'><h1>" + productname + "</h1><h2>" + brand + "</h2><p class='size'>" + size + "</p><p class='price'>" + price + "€</p><p class='quantity'>" + quantity + "</p></div></div>").show();
+            });
+            if (!$.isEmptyObject(result)) {
+                $('.bodyapp').append('<button class="animated fadeIn" id="sharelist"><i class="ion-share"></i><span>Compartir</span></button>');
+            }
+            $("#sharelist").click(function() {
+                SpinnerPlugin.activityStart("Generando tu lista...");
+                $('#pdfcontent').remove();
+                $('body').append('<input type="hidden" id="pdfcontent" value="">');
+                var email = localStorage.email;
+                var url = baseURL + "/app/listitems.php?email=" + email + "";
+                var json = $.getJSON(url, function(result) {
+                    console.log(result);
+                    $.each(result, function(i, field) {
+                        var id = field.id_list;
+                        var productname = field.product_name;
+                        var quantity = field.quantity;
+                        var image = field.product_image;
+                        var size = field.product_size;
+                        var price = field.product_price;
+                        var brand = field.brand_name;
+                        $('#pdfcontent').val($('#pdfcontent').val() + '<tr><th><img src="' + image + '" onerror=this.src=baseURL+"/app/images/404es.png"></th><td>' + productname + '</td><td>' + brand + '</td><td>' + size + '</td><td>' + price + '€</td><td>' + quantity + ' Ud.</td></tr>');
+                    });
+                    var lista = document.getElementById("pdfcontent").value;
+                    pdf.htmlToPDF({
+                        data: '<html><style type="text/css">html {font-family: Arial;background: linear-gradient(to right, #243B55, #141E30);background-attachment: fixed;color: white;}h1 {font-size: 100%;margin-top: 65px;margin-left: 15px;}table {padding: 20px;width: 95%;text-align: center;}img {width: 45px;}.right {position: absolute;right: 25px;top: -38px;font-style: italic;}h2 {text-align: center;font-size: 85%;margin-top: 25px;}.apple {width: 85px;position: absolute;left: 95px;}.google {width: 108px;position: absolute;right: 95px;}.testapp {position: absolute;right: 0px;left: 0px;margin: auto;margin-top: -5px;}</style><h1>¡Han compartido una lista contigo!</h1><h1 class="right">MyShoppingList</h1><table><tr><th></th><th>Producto</th><th>Marca</th><th>Tamaño</th><th>Precio</th><th>Cantidad</th></tr>' + lista + '</table><h2>Esta lista ha sido realizada con MyShoppingList.</h2><a href="#"><img class="apple" src=baseURL+"/files/images/others/apple.png"></a><a href="https://play.google.com/store/apps/details?id=com.axstudios.myshoppinglist"><img class="google" src=baseURL+"/files/images/others/google.png"></a><img class="testapp" src=baseURL+"/files/images/homeimage.png"></html>',
+                        documentSize: 'A4',
+                        landscape: 'portrait',
+                        type: 'share', //use share to open the open-with-menu.
+                        fileName: 'MiLista.pdf'
+                    }, this.success, this.failure);
+                    SpinnerPlugin.activityStop();
+                });
+            });
+            var a2 = Swiped.init({
+                query: '.item',
+                right: 125
+            });
+            $(".buttonerase").click(function() {
+                navigator.vibrate(25);
+                var email = localStorage.email;
+                var id = $(this).parent().attr('id');
+                var dataString = "email=" + email + "&id=" + id + "&delete=";
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + "/app/deleteitem.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Hubo un error al eliminar este producto... Intentaremos solucionarlo");
+                    },
+                    success: function(data) {
+                        if (data == "success") {
+                            $("body").append("<div class='alert animated slideInLeft deleting'><p>Producto eliminado</p></div>");
+                            setTimeout(function() {
+                                $('.deleting').fadeTo(600, 0.01, function() {
+                                    $('.deleting').remove()
+                                });
+                            }, 800);
+                            setTimeout(function() {
+                                location.reload();
+                            }, 900);
+                        } else if (data = "failed") {
+                            alert("Hubo un error al eliminar el producto.");
+                        }
+                    }
+                });
+                return false;
+            });
+            $(".buttonadd").click(function() {
+                navigator.vibrate(55);
+                var email = localStorage.email;
+                var id = $(this).parent().attr('id');
+                var dataString = "email=" + email + "&id=" + id + "&add=";
+                var quantity = $('.item#' + id + 'i .quantity').text();
+                (quantity++);
+                $('.item#' + id + 'i .quantity').html(quantity);
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + "/app/addtoitem.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Hay un problema con tu conexión.");
+                        var quantity = $('.item#' + id + 'i .quantity').text();
+                        (quantity--);
+                        $('.item#' + id + 'i .quantity').html(quantity);
+                    },
+                    success: function(data) {
+                        if (data == "success") {
+
+                        } else if (data = "failed") {
+                            alert("Hubo un error al eliminar el producto.");
+                            var quantity = $('.item#' + id + 'i .quantity').text();
+                            (quantity--);
+                            $('.item#' + id + 'i .quantity').html(quantity);
+                        }
+                    }
+                });
+                return false;
+            });
+            $(".buttonless").click(function() {
+                navigator.vibrate(55);
+                var email = localStorage.email;
+                var id = $(this).parent().attr('id');
+                var dataString = "email=" + email + "&id=" + id + "&less=";
+                var quantity = $('.item#' + id + 'i .quantity').text();
+                (quantity--);
+                $('.item#' + id + 'i .quantity').html(quantity);
+                $.ajax({
+                    type: "POST",
+                    url: baseURL + "/app/lesstoitem.php",
+                    data: dataString,
+                    crossDomain: true,
+                    cache: false,
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Ups, hay algún problema con tu conexión...");
+                        var quantity = $('.item#' + id + 'i .quantity').text();
+                        (quantity++);
+                        $('.item#' + id + 'i .quantity').html(quantity);
+                    },
+                    success: function(data) {
+                        if (data == "success") {} else if (data = "failed") {
+                            alert("Hay un problema! No estarás intentando quedarte con 0 productos...?");
+                            var quantity = $('.item#' + id + 'i .quantity').text();
+                            (quantity++);
+                            $('.item#' + id + 'i .quantity').html(quantity);
+                        }
+                    }
+                });
+                return false;
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $("#searchbox").on('keyup', function() {
+            var key = $(this).val();
+            if ($.trim($("#searchbox").val()) == '') {
+                $(".searchitem").remove();
+            } else {
+                var url = baseURL + "/app/searchbar.php?search=" + key + "";
+                var json = $.getJSON(url, function(result) {
+                    console.log(result);
+                    $(".searchitem").remove();
+                    $.each(result, function(i, field) {
+                        var id = field.id_product;
+                        var productname = field.product_name;
+                        var image = field.product_image;
+                        var size = field.product_size;
+                        var price = field.product_price;
+                        var brand = field.brand_name;
+                        var searchproduct = $(".searchcontent").append("<div class='searchitem'><div class='contentitemsearch' id='" + id + "'><h1>" + productname + "</h1><h2>" + brand + "</h2><img src='" + image + "' onerror=this.src='" + baseURL + "/app/images/404es.png'><p class='size'>" + size + "</p><p class='price'>" + price + "€</p></div></div>");
+                        $("div.searchitem").hide().show("fast");
+                    });
+                    $(".contentitemsearch").click(function() {
+                        var productnametoadd = $(this).children('h1').text();
+                        var brandtoadd = $(this).children('h2').text();
+                        var idtoadd = $(this).attr('id');
+                        $(".boxtoadd").remove();
+                        $(".searcher").val("");
+                        $('.searcher').keyup();
+                        $("body").append("<div class='boxtoadd animated zoomIn' id='" + idtoadd + "'><h1>¿Deseas añadir a tu lista</h1><h2><b>" + productnametoadd + "</b> de <b>" + brandtoadd + "</b>?</h2><a class='acceptadd'><i class='ion-checkmark'></i></a><a class='deniedadd'><i class='ion-close'></i></a></div>");
+                        $(".acceptadd").click(function() {
+                            var email = localStorage.email;
+                            var id = $(this).parent().attr('id');
+                            var dataString = "email=" + email + "&id=" + id + "&addtolist=";
+                            $.ajax({
+                                type: "POST",
+                                url: baseURL + "/app/addtolist.php",
+                                data: dataString,
+                                crossDomain: true,
+                                cache: false,
+                                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                                    alert("Ups... Hay un problema con tu conexión.");
+                                },
+                                success: function(data) {
+                                    if (data == "success") {
+                                        setTimeout(function() {
+                                            $('.boxtoadd').fadeTo(150, 0.01, function() {
+                                                $('.boxtoadd').remove()
+                                            });
+                                        }, 300);
+                                        $("body").append("<div class='alert animated slideInLeft adding'><p>Producto añadido correctamente</p></div>");
+                                        setTimeout(function() {
+                                            $('.adding').fadeTo(600, 0.01, function() {
+                                                $('.adding').remove()
+                                            });
+                                        }, 800);
+                                        setTimeout(function() {
+                                            location.reload();
+                                        }, 900);
+                                    } else if (data = "failed") {
+                                        alert("Hubo un error al añadir el producto.");
+                                    }
+                                }
+                            });
+                            return false;
+                        });
+                        $(".deniedadd").click(function() {
+                            setTimeout(function() {
+                                $('.boxtoadd').fadeTo(100, 0.01, function() {
+                                    $('.boxtoadd').remove()
+                                });
+                            }, 250);
+                        });
+                    });
+                })
+            };
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(".buttonsearch").click(function() {
+        $(".search").show();
+        $(".searchcontent").show();
+        $(".buttonshead").hide();
+    });
+
+    $(".buttonclosesearch").click(function() {
+        $(".searcher").val("");
+        $('.searcher').keyup();
+        $(".search").hide();
+        $(".buttonshead").show();
+    });
+</script>
+<!--div class="alert animated slideInLeft">
       <p>Producto eliminado</p>
       </div-->
+
 </html>

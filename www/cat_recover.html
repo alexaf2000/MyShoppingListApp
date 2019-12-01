@@ -1,59 +1,67 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" type="text/css" href="./fonts/ionicons/css/ionicons.min.css">
-      <link rel="stylesheet" type="text/css" href="./css/appstyle.css">
-   </head>
-   <body class="loginbody animated fadeIn">
-      <div class="backgroundlogin"></div>
-      <a class="buttonback" style="position: fixed;" href="./start.html" rel="external" ><i class="ion-ios-arrow-back" aria-hidden="true"></i></a>
-      <img class="logologin register animated zoomIn" src="./img/logo.png">
-      <div class="bottomlogin register">
-         <div class="login__form">
-            <p style="position: relative;">Enviarem un correu electrònic amb el codi de verificació per poder canviar la contrasenya.</p>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/appstyle.css">
+</head>
+
+<body class="loginbody animated fadeIn">
+    <div class="backgroundlogin"></div>
+    <a class="buttonback" style="position: fixed;" href="./start.html" rel="external"><i class="ion-ios-arrow-back"
+         aria-hidden="true"></i></a>
+    <img class="logologin register animated zoomIn" src="./img/logo.png">
+    <div class="bottomlogin register">
+        <div class="login__form">
+            <p style="position: relative;">Enviarem un correu electrònic amb el codi de verificació per poder canviar la contrasenya.
+            </p>
             <div class="login__row animated slideInUp" style="margin-top: 15px;">
-               <i class="ion-email loginicons"></i>
-               <input type="email" id="email" class="login__input name" placeholder="Correu electrònico"/>
+                <i class="ion-email loginicons"></i>
+                <input type="email" id="email" class="login__input name" placeholder="Correu electrònico" />
             </div>
-            <button id="createpwd_rec" type="submit" class="log animated slideInUp" style="margin-top: 25px;">Envíar codi de verificació</button>
+            <button id="createpwd_rec" type="submit" class="log animated slideInUp" style="margin-top: 25px;">Envíar codi
+            de verificació</button>
             <p><a href="./changepassword.html">Ja tinc un codi de verificació</a></p>
-         </div>
-      </div>
-   </body>
-   <script type="text/javascript" src="cordova.js"></script>
-   <script type="text/javascript" src="js/jquery.js"></script>
-   <script type="text/javascript">
-      $("#createpwd_rec").click(function(){
-      	var email=$("#email").val();
-      	var dataString="email="+email+"&createpwd_rec=";
-      	if (!isValidEmail(email)) {
-          		window.alert("Has d'introduir un correu electrònic vàlid.");
-      		} else {
-      			$.ajax({
-      				type: "POST",
-      				url: 'https://myshoppinglist.cat/app/cat_createpasswordrec.php',
-      				data: dataString,
-      				crossDomain: true,
-      				cache: false,
-      				beforeSend: function(){ $("#createpwd_rec").val('Connecting...');},
-      				success: function(data){
-      					if(data=="success") {
-      						alert("S'ha enviat al teu correu electrònic el codi de verificació.");
-      						window.location.href = "changepassword.html";
-      					}
-      					else if(data="failed") {
-      						alert("El correu electrònic introduït no existeix.");
-      					}
-      				}
-      			});
-      			return false;
-      		}
-      });
-      
-      function isValidEmail(mail) { 
-        return /^\w+([\.\+\-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail); 
-      }
-   </script>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+    $("#createpwd_rec").click(function() {
+        var email = $("#email").val();
+        var dataString = "email=" + email + "&createpwd_rec=";
+        if (!isValidEmail(email)) {
+            window.alert("Has d'introduir un correu electrònic vàlid.");
+        } else {
+            $.ajax({
+                type: "POST",
+                url: baseURL + '/app/cat_createpasswordrec.php',
+                data: dataString,
+                crossDomain: true,
+                cache: false,
+                beforeSend: function() {
+                    $("#createpwd_rec").val('Connecting...');
+                },
+                success: function(data) {
+                    if (data == "success") {
+                        alert("S'ha enviat al teu correu electrònic el codi de verificació.");
+                        window.location.href = "changepassword.html";
+                    } else if (data = "failed") {
+                        alert("El correu electrònic introduït no existeix.");
+                    }
+                }
+            });
+            return false;
+        }
+    });
+
+    function isValidEmail(mail) {
+        return /^\w+([\.\+\-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail);
+    }
+</script>
+
 </html>

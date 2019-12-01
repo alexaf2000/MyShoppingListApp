@@ -1,118 +1,127 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="stylesheet" type="text/css" href="./fonts/ionicons/css/ionicons.min.css">
-      <link rel="stylesheet" type="text/css" href="./css/appstyle.css">
-   </head>
-   <body class="loginbody animated fadeIn" onload="bbutton(); onLoadlogin();">
-      <div class="backgroundlogin"></div>
-      <img class="logologin animated zoomIn" src="./img/logo.png">
-      <div class="bottomlogin">
-         <div class="login__form">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./fonts/ionicons/css/ionicons.min.css">
+    <script type="text/javascript" src="js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/appstyle.css">
+</head>
+
+<body class="loginbody animated fadeIn" onload="bbutton(); onLoadlogin();">
+    <div class="backgroundlogin"></div>
+    <img class="logologin animated zoomIn" src="./img/logo.png">
+    <div class="bottomlogin">
+        <div class="login__form">
             <div class="login__row">
-               <i class="ion-ios-person loginicons"></i>
-               <input type="email" id="email" class="login__input name" placeholder="Correu electrònic" maxlength="50"/>
+                <i class="ion-ios-person loginicons"></i>
+                <input type="email" id="email" class="login__input name" placeholder="Correu electrònic" maxlength="50" />
             </div>
             <div class="login__row">
-               <i class="ion-key loginicons"></i>
-               <input type="password" id="password" class="login__input pass" placeholder="Contrasenya" maxlength="35"/><a class="help_password" href="./recover.html"><i class="material-icons">help</i></a>
+                <i class="ion-key loginicons"></i>
+                <input type="password" id="password" class="login__input pass" placeholder="Contrasenya" maxlength="35" /><a class="help_password" href="./recover.html"><i class="material-icons">help</i></a>
             </div>
             <button id="login" type="submit" class="log">Iniciar Sessió</button>
             <p>No tens compte? <a href="./signup.html">Crea un compte nou</a></p>
-         </div>
-      </div>
-   </body>
-   <script type="text/javascript" src="cordova.js"></script>
-   <script type="text/javascript" src="js/jquery.js"></script>
-   <script type="text/javascript" src="js/md5.min.js"></script>
-   <script type="text/javascript">
-      function onLoadlogin() {
-              if (localStorage.login == 'true'){
-                SpinnerPlugin.activityStart("Carregant...");
-                    var email= localStorage.email;
-                    var password= localStorage.pwd;
-              var dataString="email="+email+"&password="+password+"&login=";
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/md5.min.js"></script>
+<script type="text/javascript">
+    function onLoadlogin() {
+        if (localStorage.login == 'true') {
+            SpinnerPlugin.activityStart("Carregant...");
+            var email = localStorage.email;
+            var password = localStorage.pwd;
+            var dataString = "email=" + email + "&password=" + password + "&login=";
             $.ajax({
-              type: "POST",
-              url: "https://myshoppinglist.cat/app/login.php",
-              data: dataString,
-              crossDomain: true,
-              cache: false,
-              beforeSend: function(){ $("#login").html('Iniciant Sessió...');},
-              error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                SpinnerPlugin.activityStop();
-              alert("Sembla ser que no tens connexió a internet. ¡Connectat i prova de nou!");
-          },
-              success: function(data){
-               if(data=="success") {   
-                SpinnerPlugin.activityStop();
-                  window.location.href = "cat_list.html";
+                type: "POST",
+                url: baseURL + "/app/login.php",
+                data: dataString,
+                crossDomain: true,
+                cache: false,
+                beforeSend: function() {
+                    $("#login").html('Iniciant Sessió...');
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    SpinnerPlugin.activityStop();
+                    alert("Sembla ser que no tens connexió a internet. ¡Connectat i prova de nou!");
+                },
+                success: function(data) {
+                    if (data == "success") {
+                        SpinnerPlugin.activityStop();
+                        window.location.href = "cat_list.html";
+                    } else if (data = "failed") {
+                        SpinnerPlugin.activityStop();
+                        localStorage.login = 'false';
+                        alert("Hi va haver un error. Inicia sessió de nou.");
+                        $("#login").html('Iniciar Sessió');
+                    }
                 }
-                else if(data="failed") {
-                  SpinnerPlugin.activityStop();
-                  localStorage.login='false';
-                  alert("Hi va haver un error. Inicia sessió de nou.");
-                  $("#login").html('Iniciar Sessió');
-                }
-              }
             });
-          return false;
-              };
-            }
-   </script>
-   <script type="text/javascript">
-      function bbutton() {
-              document.addEventListener("deviceready", onDeviceReady, false);
-          }
-          function onDeviceReady() {
-              // Register the event listener
-              document.addEventListener("backbutton", onBackKeyDown, false);
-          }
-          // Handle the back button
-          //
-            function onBackKeyDown() {
-            navigator.app.exitApp();
-          }
-   </script>
-   <script type="text/javascript">
-      document.addEventListener('deviceready', function(){
-      StatusBar.backgroundColorByHexString('#348eff');});
-   </script>
-   <script type="text/javascript">
-      $("#login").click(function(){
-      
-        var email=$("#email").val();
-        var decrypted=$("#password").val();
+            return false;
+        };
+    }
+</script>
+<script type="text/javascript">
+    function bbutton() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    function onDeviceReady() {
+        // Register the event listener
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+    // Handle the back button
+    //
+    function onBackKeyDown() {
+        navigator.app.exitApp();
+    }
+</script>
+<script type="text/javascript">
+    document.addEventListener('deviceready', function() {
+        StatusBar.backgroundColorByHexString('#348eff');
+    });
+</script>
+<script type="text/javascript">
+    $("#login").click(function() {
+
+        var email = $("#email").val();
+        var decrypted = $("#password").val();
         event.preventDefault()
         var password = md5(decrypted)
-        var dataString="email="+email+"&password="+password+"&login=";
-        if($.trim(email).length>0 & $.trim(password).length>0) {
-          $.ajax({
-            type: "POST",
-            url: "https://myshoppinglist.cat/app/login.php",
-            data: dataString,
-            crossDomain: true,
-            cache: false,
-            beforeSend: function(){ $("#login").html('Iniciant Sessió...');},
-            error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                        alert("Sembla ser que no tens connexió a internet. Conectat i prova de nou!");
-                        }, 
-            success: function(data){
-             if(data=="success") {   
-                localStorage.login="true";
-                localStorage.email=email;
-                localStorage.pwd=password;
-                window.location.href = "list.html";
-              }
-              else if(data="failed") {
-                alert("L'usuari i contrasenya que has introduït no existeix o és incorrecte.");
-                $("#login").html('Iniciar Sessió');
-              }
-            }
-          });
-        }return false;
-      });
-   </script>
+        var dataString = "email=" + email + "&password=" + password + "&login=";
+        if ($.trim(email).length > 0 & $.trim(password).length > 0) {
+            $.ajax({
+                type: "POST",
+                url: "https://myshoppinglist.cat/app/login.php",
+                data: dataString,
+                crossDomain: true,
+                cache: false,
+                beforeSend: function() {
+                    $("#login").html('Iniciant Sessió...');
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("Sembla ser que no tens connexió a internet. Conectat i prova de nou!");
+                },
+                success: function(data) {
+                    if (data == "success") {
+                        localStorage.login = "true";
+                        localStorage.email = email;
+                        localStorage.pwd = password;
+                        window.location.href = "list.html";
+                    } else if (data = "failed") {
+                        alert("L'usuari i contrasenya que has introduït no existeix o és incorrecte.");
+                        $("#login").html('Iniciar Sessió');
+                    }
+                }
+            });
+        }
+        return false;
+    });
+</script>
+
 </html>
